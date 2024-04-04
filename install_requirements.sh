@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# Directory of the script
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 # Install requirements
-pip install -r requirements.txt
+python3 -m pip install -U -r "$DIR/requirements.txt"
 
 # Make the script executable
-chmod +x "$0"
+chmod +x "$DIR/install_requirements.sh"
