@@ -1,0 +1,3 @@
+#[D] = Discord
+import discord
+
