@@ -7,6 +7,9 @@ from discord.ext import commands
 #[L] = Logger
 logger = settings.logging.getLogger("bot")
 
+#[F] = Feature
+import random                                   # For the command "!choices".
+
 def run():
     intents = discord.Intents.all()                     # Enable all type of intents. Only for developing.
 
@@ -32,7 +35,27 @@ def run():
         """ Answers with pong. """                      # Brief description of this command. Replaced with brief.
         await ctx.send("pong")
 
+    @bot.command()
+    async def say(ctx, what = "WHAT?"):                     # Only take single word. Default "WHAT?."
+        await ctx.send(what)                                # Reply with it.
         
+    @bot.command()
+    async def say2(ctx, *what):                             # Take words as tokens delimited with space.
+        await ctx.send(" ".join(what))                      # Adjust words(tokens) with spaces.
+
+    @bot.command()
+    async def choices(ctx, *options): 
+        await ctx.send(random.choice(options))              # Return one random element from tokens.
+
+    @bot.command()
+    async def add(ctx, one : int, two : int):               # Set the type of input value.
+        await ctx.send(one + two)                           # Return added result of two input values.
+
+    @bot.command()
+    async def say3(ctx, what = "WHAT?", why = "WHY?"):      # Take two words as token for what and why.
+        await ctx.send(what + why)                          # Adjust two tokens.
+
+
     bot.run(settings.TOKEN, root_logger=True)
 
 if __name__ == "__main__":
