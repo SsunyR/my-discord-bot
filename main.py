@@ -8,7 +8,8 @@ from discord.ext import commands
 logger = settings.logging.getLogger("bot")
 
 #[F] = Feature
-import random                                   # For the command "!choices".
+import random                                   # For the command "!choices".     
+
 
 def run():
     intents = discord.Intents.all()                     # Enable all type of intents. Only for developing.
@@ -54,6 +55,11 @@ def run():
     @bot.command()
     async def say3(ctx, what = "WHAT?", why = "WHY?"):      # Take two words as token for what and why.
         await ctx.send(what + why)                          # Adjust two tokens.
+
+    @bot.command()
+    async def joined(ctx, who : discord.Member):            # Get discord member's name for input. *Case sensitive*
+        nick = who.nick
+        await ctx.send(f"{nick} has joined at {who.joined_at}")     # Show joined time.
 
 
     bot.run(settings.TOKEN, root_logger=True)
