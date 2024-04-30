@@ -24,6 +24,12 @@ def run():
     async def on_ready():                                           # When bot is online.
         logger.info(f"User: {bot.user} (ID: {bot.user.id})")        # Show message with the format I set.
 
+    @bot.event
+    async def on_command_error(ctx, error):                         # Global error handler.
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send("handled error globally")
+
+
     @bot.command(           # Configuration of the command. Can be shown with "!help ping"
             aliases = ['p'],                                        # Set aliases for the command. Enable "!p | !help p".
             help = "Type !ping or !p on the channel",               # Guide of the command. How to use this command.
@@ -51,6 +57,11 @@ def run():
     @bot.command()
     async def add(ctx, one : int, two : int):               # Set the type of input value.
         await ctx.send(one + two)                           # Return added result of two input values.
+
+    @add.error                                              # Set error handler for the command "!add".
+    async def add_error(ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):     # If argument is missing.
+            await ctx.send("handled error locally")
 
     @bot.command()
     async def say3(ctx, what = "WHAT?", why = "WHY?"):      # Take two words as token for what and why.
