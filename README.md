@@ -29,3 +29,10 @@ Error handler with local command can be add with attribute "@(command name).erro
 Define the expected error type and set the handler.
 Global error handler can be set with the attribute "@bot.event".
 If there are both local and global error hander, bot will handle both of errors, in the order of local, global.
+
+# Command group
+Command group can be made with attribute "@bot.group()".
+Commands in the group becomes sub_commands of the group.
+Group name is decided with function name, and the sub_commands' attribute should be changed to "(group name).command()".
+Commands under the group can be executed as "(group name) (command) (arguments)".
+Group can be nested multiple times. In this case, you should write the command with hierarchical order as the group is nested.
