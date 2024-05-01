@@ -1,5 +1,6 @@
 # my-discord-bot
-Demo discord bot for 
+Demo discord bot for Discord Bot Initiallizer.
+Made with https://www.youtube.com/watch?v=eLcAZIeqLu8&list=PLESMQx4LeD3N0-KKPPDaToZhBsom2E_Ju
 
 # activate virtualenv
 source .venv/bin/activate
