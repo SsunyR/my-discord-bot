@@ -1,8 +1,16 @@
+# for loading commands from cmds directory to bot dynamically
+import pathlib
+
 #[T] = Token
 from dotenv import load_dotenv
 import os
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
+
+# the path of parent directory of file.
+BASE_DIR = pathlib.Path(__file__).parent
+# path of cmds directory
+CMDS_DIR = BASE_DIR / "cmds"
 
 #[L] = Logger
 import logging
