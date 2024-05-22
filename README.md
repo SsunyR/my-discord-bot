@@ -37,3 +37,12 @@ Commands in the group becomes sub_commands of the group.
 Group name is decided with function name, and the sub_commands' attribute should be changed to "(group name).command()".
 Commands under the group can be executed as "(group name) (command) (arguments)".
 Group can be nested multiple times. In this case, you should write the command with hierarchical order as the group is nested.
+
+# Load commands
+Commands can be load with file.
+Check the file directory and load with file name.
+
+Commands can be load with bot_cog.
+Can be load with file name or stated class.
+* When you write the bot command as cog command, you need to add self parameter on your method(command) *
+Loading cog files iteratively can be done.

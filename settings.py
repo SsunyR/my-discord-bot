@@ -11,6 +11,8 @@ TOKEN = os.getenv('TOKEN')
 BASE_DIR = pathlib.Path(__file__).parent
 # path of cmds directory
 CMDS_DIR = BASE_DIR / "cmds"
+# path of cogs directory
+COGS_DIR = BASE_DIR / "cogs"
 
 #[L] = Logger
 import logging
