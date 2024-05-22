@@ -7,6 +7,9 @@ from discord.ext import commands
 #[L] = Logger
 logger = settings.logging.getLogger("bot")
 
+# For cog
+from cogs.greetings import Greetings
+
 #[F] = Feature
 import random                                   # For the command "!choices".     
 
@@ -23,6 +26,11 @@ def run():
     @bot.event
     async def on_ready():                                           # When bot is online.
         logger.info(f"User: {bot.user} (ID: {bot.user.id})")        # Show message with the format I set.
+
+        # Loading cog
+        # With load_extension, don't need bog.add_cog(Greetings())
+        await bot.load_extension("cogs.greetings")
+        # await bot.add_cog(Greetings(bot))
 
         # from cmds directory, get every files which name finish with .py
         for cmd_file in settings.CMDS_DIR.glob("*.py"):
