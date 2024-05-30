@@ -15,7 +15,10 @@ def run():
     intents = discord.Intents.all()
     # Choose intent types to enable
     # intents = discord.Intents.default()
-    # intents.message_content = True # Enable message intents
+    # Messaging commands need this intent option
+    # intents.message_content = True
+    # Direct message needs this intent option
+    # intents.members = True
 
     bot = commands.Bot(command_prefix="!", intents=intents)
 
@@ -25,6 +28,12 @@ def run():
         # Show message with the format I set.
         logger.info(f"User: {bot.user} (ID: {bot.user.id})")
 
+        @bot.command()
+        async def admin(ctx):
+            # ctx.message.author.send("Hello")
+            user = discord.utils.get(bot.guilds[0].members, nick="노선노선우")
+            if user:
+                await user.send("Hello admin")
 
         # from cmds directory, get every files which name finish with .py
         for cmd_file in settings.CMDS_DIR.glob("*.py"):

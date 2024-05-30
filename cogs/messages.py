@@ -6,18 +6,6 @@ import random
 async def is_owner(ctx):
     return ctx.author.id == ctx.guild.owner_id
 
-
-# 
-class NotOwner(commands.CheckFailure):
-    ...
-
-async def is_owner2(ctx):
-    async def predicate(ctx):
-        if ctx.author.id != ctx.guild.owner_id:
-            raise NotOwner("Hey you are not the owner")
-        return True
-    return commands.check(predicate)
-
 class Messages(commands.Cog):
 
     def __init__(self, bot):
@@ -46,8 +34,8 @@ class Messages(commands.Cog):
 
     # Check permission with is_owner
     @commands.command()
-    # @commands.check(is_owner)
-    @commands.is_owner
+    @commands.check(is_owner)
+    # @commands.is_owner
     # Only take single word. Default "WHAT?."
     async def say(self, ctx, what = "WHAT?"):
         # Reply
@@ -60,17 +48,10 @@ class Messages(commands.Cog):
         
     
     @commands.command()
-    # Check permission with is_owner2
-    @is_owner2
     # Take words as tokens delimited with space.
     async def say2(self, ctx, *what):
         # Adjust words(tokens) with spaces.
         await ctx.send(" ".join(what))
-
-    @say2.error
-    async def say2_error(ctx, error):
-        if isinstance(error, NotOwner):
-            await ctx.send("Permission denied.")
     
 
     @commands.command()
