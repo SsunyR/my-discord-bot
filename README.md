@@ -46,3 +46,8 @@ Commands can be load with bot_cog.
 Can be load with file name or stated class.
 * When you write the bot command as cog command, you need to add self parameter on your method(command) *
 Loading cog files iteratively can be done.
+
+# Permission check
+Permission can be checked with the method that check permission of the command.
+@commands.check_method, @commands.check(check_method)
+If permission denied, throws error. 
